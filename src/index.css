@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* .dHeight {
+  height: 95.5vh;
+} */
+
+.card {
+  width: 25rem;
+}
+
+.shadow-lg {
+  transition: 0.4s ease-in-out;
+}

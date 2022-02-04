@@ -6,8 +6,10 @@ import ProductImage3 from "../Assets/products/0_0107_img_0040.jpg";
 
 const Products = () => {
   const [hoverProduct, setHoverProduct] = useState(false);
-  const onEnter = () => {
+  const onEnter = (e) => {
+    console.log(e);
     setHoverProduct(true);
+
     //? setHoverProduct(false) : setHoverProduct(true);
   };
   const onExit = () => {
@@ -25,6 +27,7 @@ const Products = () => {
           }
           onMouseEnter={onEnter}
           onMouseLeave={onExit}
+          id="1"
         >
           <img src={ProductImage} className="card-img-top" alt="..."></img>
           <div className="card-body">
@@ -40,7 +43,7 @@ const Products = () => {
                 </p>
               </div>
               <div className="col-6 d-flex">
-                <button className="btn btn-primary m-1">-</button>
+                <button className="btn btn-warning m-1">-</button>
                 <input
                   type="number"
                   className="form-control m-1"
@@ -48,16 +51,23 @@ const Products = () => {
                   name=""
                   id=""
                 />
-                <button className="btn btn-primary m-1">+</button>
+                <button className="btn btn-warning m-1">+</button>
               </div>
               <div className="col ">
-                <button className="btn btn-primary m-1">Buy</button>
+                <button className="btn btn-warning m-1">Buy</button>
               </div>
             </div>
           </div>
         </div>
         {/* product 2 */}
-        <div className="card mb-5">
+        <div
+          className={
+            hoverProduct ? "card mb-5 border-0 shadow-lg" : "card mb-5 "
+          }
+          onMouseEnter={(e) => onEnter(e.target.value)}
+          onMouseLeave={onExit}
+          value="2"
+        >
           <img src={ProductImage2} className="card-img-top" alt="..."></img>
           <div className="card-body">
             <div className="card-title">Gaming Mouse</div>
@@ -72,23 +82,30 @@ const Products = () => {
                 </p>
               </div>
               <div className="col-6 d-flex">
-                <button className="btn btn-primary m-1">-</button>
+                <button className="btn btn-warning m-1">-</button>
                 <input
                   type="number"
                   className="form-control m-1"
                   name=""
                   id=""
                 />
-                <button className="btn btn-primary m-1">+</button>
+                <button className="btn btn-warning m-1">+</button>
               </div>
               <div className="col ">
-                <button className="btn btn-primary m-1">Buy</button>
+                <button className="btn btn-warning m-1">Buy</button>
               </div>
             </div>
           </div>
         </div>
         {/* product 3 */}
-        <div className="card mb-5">
+        <div
+          className={
+            hoverProduct ? "card mb-5 border-0 shadow-lg" : "card mb-5 "
+          }
+          onMouseEnter={onEnter}
+          onMouseLeave={onExit}
+          id="3"
+        >
           <img src={ProductImage3} className="card-img-top" alt="..."></img>
           <div className="card-body">
             <div className="card-title">Gaming Mouse</div>
@@ -103,21 +120,22 @@ const Products = () => {
                 </p>
               </div>
               <div className="col-6 d-flex">
-                <button className="btn btn-primary m-1">-</button>
+                <button className="btn btn-warning m-1">-</button>
                 <input
                   type="number"
                   className="form-control m-1"
                   name=""
                   id=""
                 />
-                <button className="btn btn-primary m-1">+</button>
+                <button className="btn btn-warning m-1">+</button>
               </div>
               <div className="col ">
-                <button className="btn btn-primary m-1">Buy</button>
+                <button className="btn btn-warning m-1">Buy</button>
               </div>
             </div>
           </div>
         </div>
+        {/* Product 3 end */}
       </div>
     </div>
   );

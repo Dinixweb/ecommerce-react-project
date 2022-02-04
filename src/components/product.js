@@ -1,13 +1,48 @@
 import React, { useState } from "react";
 import { FaDollarSign } from "react-icons/fa";
-import ProductImage from "../Assets/products/oxford.jpg";
-import ProductImage2 from "../Assets/products/0_0061_img_2637_1.jpg";
-import ProductImage3 from "../Assets/products/0_0107_img_0040.jpg";
+import { FaCartPlus } from "react-icons/fa";
+import { FaShare } from "react-icons/fa";
+// import ProductImage from "../Assets/products/oxford.jpg";
+// import ProductImage2 from "../Assets/products/0_0061_img_2637_1.jpg";
+// import ProductImage3 from "../Assets/products/0_0107_img_0040.jpg";
 
 const Products = () => {
+  const products = [
+    {
+      productId: "1",
+      productName: "J. F Wooven Tassel - Black",
+      productDesciption: "men leather shoe",
+      price: "20,300.00",
+      defaultQuantity: 1,
+      imageUrl: require("../Assets/products/0_0018_img_2792_1.jpg"),
+    },
+    {
+      productId: "2",
+      productName: "Oxford Shoes",
+      productDesciption: "men leather shoe",
+      price: "4,000.00",
+      defaultQuantity: 1,
+      imageUrl: require("../Assets/products/0_0061_img_2637_1.jpg"),
+    },
+    {
+      productId: "3",
+      productName: "Sebago Shoe - Black White",
+      productDesciption: "men leather shoe",
+      price: "12,000.00",
+      defaultQuantity: 1,
+      imageUrl: require("../Assets/products/0_0018_img_2689_5.jpg"),
+    },
+    {
+      productId: "4",
+      productName: "GG Middle strap slippers | Black",
+      productDesciption: "leather slipper New without box",
+      price: "28,000.00",
+      defaultQuantity: 1,
+      imageUrl: require("../Assets/products/ajebo_0024_img_0813.jpg"),
+    },
+  ];
   const [hoverProduct, setHoverProduct] = useState(false);
-  const onEnter = (e) => {
-    console.log(e);
+  const onEnter = () => {
     setHoverProduct(true);
 
     //? setHoverProduct(false) : setHoverProduct(true);
@@ -16,126 +51,63 @@ const Products = () => {
     setHoverProduct(false);
     //? setHoverProduct(true) : setHoverProduct(false);
   };
-  const amount = 8000;
+
   return (
     <div className="main container">
-      <div className="product d-flex gap-5 ">
-        {/* product list */}
-        <div
-          className={
-            hoverProduct ? "card mb-5 border-0 shadow-lg" : "card mb-5 "
-          }
-          onMouseEnter={onEnter}
-          onMouseLeave={onExit}
-          id="1"
-        >
-          <img src={ProductImage} className="card-img-top" alt="..."></img>
-          <div className="card-body">
-            <div className="card-title">Gaming Mouse</div>
-            <p>Lorem ipsum dolor sit amet consectetur</p>
-          </div>
-          <div className="card-footer d-flex ">
-            <div className="row d-flex justify-content-between ">
-              <div className="col ">
-                <p className="m-1">
-                  <FaDollarSign />
-                  {amount}
+      <div className="product d-flex gap-3 flex-lg-fill flex-wrap">
+        {products.map((e) => {
+          /* product list */
+          return (
+            <div
+              key={e.productId}
+              className={
+                hoverProduct ? "card mb-5 border-0 shadow-lg" : "card mb-5 "
+              }
+              onMouseEnter={onEnter}
+              onMouseLeave={onExit}
+            >
+              <img src={e.imageUrl} className="card-img-top" alt="..."></img>
+              <div className="card-body">
+                <div className="card-title">{e.productName}</div>
+                <p>{e.productDesciption}</p>
+                <p>
+                  <div className="col">
+                    <p className="m-1 bg-danger text-white">
+                      <FaDollarSign />
+                      {e.price}
+                    </p>
+                  </div>
                 </p>
               </div>
-              <div className="col-6 d-flex">
-                <button className="btn btn-warning m-1">-</button>
-                <input
-                  type="number"
-                  className="form-control m-1"
-                  width={100}
-                  name=""
-                  id=""
-                />
-                <button className="btn btn-warning m-1">+</button>
-              </div>
-              <div className="col ">
-                <button className="btn btn-warning m-1">Buy</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* product 2 */}
-        <div
-          className={
-            hoverProduct ? "card mb-5 border-0 shadow-lg" : "card mb-5 "
-          }
-          onMouseEnter={(e) => onEnter(e.target.value)}
-          onMouseLeave={onExit}
-          value="2"
-        >
-          <img src={ProductImage2} className="card-img-top" alt="..."></img>
-          <div className="card-body">
-            <div className="card-title">Gaming Mouse</div>
-            <p>Lorem ipsum dolor sit amet consectetur</p>
-          </div>
-          <div className="card-footer d-flex ">
-            <div className="row d-flex justify-content-between ">
-              <div className="col ">
-                <p className="m-1">
-                  <FaDollarSign />
-                  {amount}
-                </p>
-              </div>
-              <div className="col-6 d-flex">
-                <button className="btn btn-warning m-1">-</button>
-                <input
-                  type="number"
-                  className="form-control m-1"
-                  name=""
-                  id=""
-                />
-                <button className="btn btn-warning m-1">+</button>
-              </div>
-              <div className="col ">
-                <button className="btn btn-warning m-1">Buy</button>
+              <div className="card-footer d-flex justify-content-evenly">
+                <div className="row d-flex justify-content-evenly">
+                  <div className="col">
+                    <button className="btn btn-warning m-1">
+                      <FaCartPlus />
+                    </button>
+                  </div>
+                  <div className="col-5 d-flex">
+                    <button className="btn btn-warning m-1">-</button>
+                    <input
+                      type="number"
+                      className="form-control m-1"
+                      width={100}
+                      name=""
+                      id=""
+                    />
+                    <button className="btn btn-warning m-1">+</button>
+                  </div>
+                  <div className="col">
+                    <button className="btn btn-warning m-1">
+                      <FaShare />
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        {/* product 3 */}
-        <div
-          className={
-            hoverProduct ? "card mb-5 border-0 shadow-lg" : "card mb-5 "
-          }
-          onMouseEnter={onEnter}
-          onMouseLeave={onExit}
-          id="3"
-        >
-          <img src={ProductImage3} className="card-img-top" alt="..."></img>
-          <div className="card-body">
-            <div className="card-title">Gaming Mouse</div>
-            <p>Lorem ipsum dolor sit amet consectetur</p>
-          </div>
-          <div className="card-footer d-flex ">
-            <div className="row d-flex justify-content-between ">
-              <div className="col ">
-                <p className="m-1">
-                  <FaDollarSign />
-                  {amount}
-                </p>
-              </div>
-              <div className="col-6 d-flex">
-                <button className="btn btn-warning m-1">-</button>
-                <input
-                  type="number"
-                  className="form-control m-1"
-                  name=""
-                  id=""
-                />
-                <button className="btn btn-warning m-1">+</button>
-              </div>
-              <div className="col ">
-                <button className="btn btn-warning m-1">Buy</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* Product 3 end */}
+          );
+        })}
+        {/* product*/}
       </div>
     </div>
   );

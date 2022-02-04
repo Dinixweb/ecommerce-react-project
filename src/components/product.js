@@ -40,6 +40,38 @@ const Products = () => {
       defaultQuantity: 1,
       imageUrl: require("../Assets/products/ajebo_0024_img_0813.jpg"),
     },
+    {
+      productId: "4",
+      productName: "GG Middle strap slippers | Black",
+      productDesciption: "leather slipper New without box",
+      price: "28,000.00",
+      defaultQuantity: 1,
+      imageUrl: require("../Assets/products/ajebo_0024_img_0813.jpg"),
+    },
+    {
+      productId: "4",
+      productName: "GG Middle strap slippers | Black",
+      productDesciption: "leather slipper New without box",
+      price: "28,000.00",
+      defaultQuantity: 1,
+      imageUrl: require("../Assets/products/ajebo_0024_img_0813.jpg"),
+    },
+    {
+      productId: "4",
+      productName: "GG Middle strap slippers | Black",
+      productDesciption: "leather slipper New without box",
+      price: "28,000.00",
+      defaultQuantity: 1,
+      imageUrl: require("../Assets/products/ajebo_0024_img_0813.jpg"),
+    },
+    {
+      productId: "4",
+      productName: "GG Middle strap slippers | Black",
+      productDesciption: "leather slipper New without box",
+      price: "28,000.00",
+      defaultQuantity: 1,
+      imageUrl: require("../Assets/products/ajebo_0024_img_0813.jpg"),
+    },
   ];
   const [hoverProduct, setHoverProduct] = useState(false);
   const onEnter = () => {
@@ -50,6 +82,9 @@ const Products = () => {
   const onExit = () => {
     setHoverProduct(false);
     //? setHoverProduct(true) : setHoverProduct(false);
+  };
+  const addItem = (item) => {
+    console.log(item);
   };
 
   return (
@@ -86,16 +121,21 @@ const Products = () => {
                       <FaCartPlus />
                     </button>
                   </div>
-                  <div className="col-5 d-flex">
+                  <div className="col-6 d-flex">
                     <button className="btn btn-warning m-1">-</button>
                     <input
-                      type="number"
+                      type="text"
                       className="form-control m-1"
                       width={100}
-                      name=""
+                      name="item"
                       id=""
                     />
-                    <button className="btn btn-warning m-1">+</button>
+                    <button
+                      className="btn btn-warning m-1"
+                      onClick={(item) => addItem(item)}
+                    >
+                      +
+                    </button>
                   </div>
                   <div className="col">
                     <button className="btn btn-warning m-1">

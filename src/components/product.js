@@ -41,7 +41,7 @@ const Products = () => {
       imageUrl: require("../Assets/products/ajebo_0024_img_0813.jpg"),
     },
     {
-      productId: "4",
+      productId: "5",
       productName: "GG Middle strap slippers | Black",
       productDesciption: "leather slipper New without box",
       price: "28,000.00",
@@ -49,7 +49,7 @@ const Products = () => {
       imageUrl: require("../Assets/products/ajebo_0024_img_0813.jpg"),
     },
     {
-      productId: "4",
+      productId: "6",
       productName: "GG Middle strap slippers | Black",
       productDesciption: "leather slipper New without box",
       price: "28,000.00",
@@ -57,7 +57,7 @@ const Products = () => {
       imageUrl: require("../Assets/products/ajebo_0024_img_0813.jpg"),
     },
     {
-      productId: "4",
+      productId: "7",
       productName: "GG Middle strap slippers | Black",
       productDesciption: "leather slipper New without box",
       price: "28,000.00",
@@ -65,7 +65,7 @@ const Products = () => {
       imageUrl: require("../Assets/products/ajebo_0024_img_0813.jpg"),
     },
     {
-      productId: "4",
+      productId: "8",
       productName: "GG Middle strap slippers | Black",
       productDesciption: "leather slipper New without box",
       price: "28,000.00",
@@ -83,8 +83,28 @@ const Products = () => {
     setHoverProduct(false);
     //? setHoverProduct(true) : setHoverProduct(false);
   };
-  const addItem = (item) => {
-    console.log(item);
+  const initialFormData = Object.freeze({
+    items: 1,
+  });
+  const [formData, updateFormData] = React.useState(initialFormData);
+
+  const handleChange = (e) => {
+    updateFormData({
+      ...formData,
+
+      // Trimming any whitespace
+      [e.target.name]: e.target.value.trim(),
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let addItems = formData.item;
+    // addItems = isNaN(addItems) ? 0 : addItems + 1;
+    let items = JSON.parse(addItems);
+    items++;
+    console.log(items);
+    // ... submit to API or something
   };
 
   return (
@@ -105,43 +125,45 @@ const Products = () => {
               <div className="card-body">
                 <div className="card-title">{e.productName}</div>
                 <p>{e.productDesciption}</p>
-                <p>
-                  <div className="col">
-                    <p className="m-1 bg-danger text-white">
-                      <FaDollarSign />
-                      {e.price}
-                    </p>
-                  </div>
-                </p>
+
+                <div className="col">
+                  <p className="m-1 bg-danger text-white">
+                    <FaDollarSign />
+                    {e.price}
+                  </p>
+                </div>
               </div>
               <div className="card-footer d-flex justify-content-evenly">
-                <div className="row d-flex justify-content-evenly">
-                  <div className="col">
-                    <button className="btn btn-warning m-1">
-                      <FaCartPlus />
-                    </button>
-                  </div>
-                  <div className="col-6 d-flex">
-                    <button className="btn btn-warning m-1">-</button>
-                    <input
-                      type="text"
-                      className="form-control m-1"
-                      width={100}
-                      name="item"
-                      id=""
-                    />
-                    <button
-                      className="btn btn-warning m-1"
-                      onClick={(item) => addItem(item)}
-                    >
-                      +
-                    </button>
-                  </div>
-                  <div className="col">
-                    <button className="btn btn-warning m-1">
-                      <FaShare />
-                    </button>
-                  </div>
+                <div className="row d-flex justify-content-evenly ">
+                  <form className="d-flex justify-content-evenly">
+                    <div className="col-2">
+                      <button className="btn btn-warning m-1">
+                        <FaCartPlus />
+                      </button>
+                    </div>
+                    <div className="col-7 d-flex">
+                      <button className="btn btn-warning m-1">-</button>
+                      <input
+                        type="number"
+                        className="form-control m-1"
+                        width={100}
+                        name="item"
+                        id=""
+                        onChange={handleChange}
+                      />
+                      <button
+                        className="btn btn-warning m-1"
+                        onClick={handleSubmit}
+                      >
+                        +
+                      </button>
+                    </div>
+                    <div className="col-2">
+                      <button className="btn btn-warning m-1">
+                        <FaShare />
+                      </button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>

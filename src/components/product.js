@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import { FaDollarSign } from "react-icons/fa";
 import { FaCartPlus } from "react-icons/fa";
 import { FaShare } from "react-icons/fa";
+import Badge from "@material-ui/core/Badge";
+import { Routes, Route } from "react-router-dom";
+import SingleProduct from "../Views/singleProductView";
+
 // import ProductImage from "../Assets/products/oxford.jpg";
 // import ProductImage2 from "../Assets/products/0_0061_img_2637_1.jpg";
 // import ProductImage3 from "../Assets/products/0_0107_img_0040.jpg";
 
-const Products = () => {
+const Products = ({ cart, setCart }) => {
   const products = [
     {
       productId: "1",
@@ -34,11 +38,11 @@ const Products = () => {
     },
     {
       productId: "4",
-      productName: "GG Middle strap slippers | Black",
+      productName: "Jeep Buluo Plain Bag | Black",
       productDesciption: "leather slipper New without box",
       price: "28,000.00",
       defaultQuantity: 1,
-      imageUrl: require("../Assets/products/ajebo_0024_img_0813.jpg"),
+      imageUrl: require("../Assets/products/bag.jpg"),
     },
     {
       productId: "5",
@@ -50,77 +54,72 @@ const Products = () => {
     },
     {
       productId: "6",
-      productName: "GG Middle strap slippers | Black",
+      productName:
+        "Casio Edifice Gold Dial |Silver & Gold Bracelet Chronograph Watch",
       productDesciption: "leather slipper New without box",
-      price: "28,000.00",
+      price: "45,000.00",
       defaultQuantity: 1,
-      imageUrl: require("../Assets/products/ajebo_0024_img_0813.jpg"),
+      imageUrl: require("../Assets/products/w1.jpg"),
     },
     {
       productId: "7",
-      productName: "GG Middle strap slippers | Black",
+      productName: "Umbro Classic White Trainers | White",
       productDesciption: "leather slipper New without box",
-      price: "28,000.00",
+      price: "30,000.00",
       defaultQuantity: 1,
-      imageUrl: require("../Assets/products/ajebo_0024_img_0813.jpg"),
+      imageUrl: require("../Assets/products/umbro_ccupshoesu18g7009_1575651042umfm0192_096_1.jpg"),
     },
     {
       productId: "8",
-      productName: "GG Middle strap slippers | Black",
+      productName: "Nike Tiempo Vetta | Black & Gold",
       productDesciption: "leather slipper New without box",
-      price: "28,000.00",
+      price: "18,000.00",
       defaultQuantity: 1,
-      imageUrl: require("../Assets/products/ajebo_0024_img_0813.jpg"),
+      imageUrl: require("../Assets/products/nike-tiempo-vetta-17-p94616-279622_medium.jpg"),
     },
   ];
   const [hoverProduct, setHoverProduct] = useState(false);
-  const onEnter = () => {
-    setHoverProduct(true);
 
-    //? setHoverProduct(false) : setHoverProduct(true);
-  };
-  const onExit = () => {
-    setHoverProduct(false);
-    //? setHoverProduct(true) : setHoverProduct(false);
-  };
-  const initialFormData = Object.freeze({
-    items: 1,
-  });
-  const [formData, updateFormData] = React.useState(initialFormData);
+  const [itemCount, setItemCount] = React.useState(1);
 
-  const handleChange = (e) => {
-    updateFormData({
-      ...formData,
+  let [num, setNum] = useState(0);
 
-      // Trimming any whitespace
-      [e.target.name]: e.target.value.trim(),
-    });
-  };
-
-  const handleSubmit = (e) => {
+  let incNum = (e) => {
     e.preventDefault();
-    let addItems = formData.item;
-    // addItems = isNaN(addItems) ? 0 : addItems + 1;
-    let items = JSON.parse(addItems);
-    items++;
-    console.log(items);
-    // ... submit to API or something
+    if (num < 50) {
+      setNum(Number(num) + 1);
+    }
   };
 
+  let decNum = (e) => {
+    e.preventDefault();
+    if (num > 0) {
+      setNum(num - 1);
+    }
+  };
+
+  let enteredValue = 1;
+  const handleChange = (event) => {
+    event.preventDefault();
+    enteredValue = event.target.value;
+    setNum = event.target.value;
+  };
+  const handleSubmit = (e) => {
+    // event.preventDefault();
+    // setItemCount(itemCount + 1);
+    // console.log(itemCount);
+    setCart([...cart, e]);
+    // const addedItems = {
+    //   item: enteredValue,
+    // };
+  };
   return (
     <div className="main container">
       <div className="product d-flex gap-3 flex-lg-fill flex-wrap">
         {products.map((e) => {
           /* product list */
           return (
-            <div
-              key={e.productId}
-              className={
-                hoverProduct ? "card mb-5 border-0 shadow-lg" : "card mb-5 "
-              }
-              onMouseEnter={onEnter}
-              onMouseLeave={onExit}
-            >
+            <div key={e.productId} className={"card mb-5 border"}>
               <img src={e.imageUrl} className="card-img-top" alt="..."></img>
               <div className="card-body">
                 <div className="card-title">{e.productName}</div>
@@ -129,47 +128,43 @@ const Products = () => {
                 <div className="col">
                   <p className="m-1 bg-danger text-white">
                     <FaDollarSign />
+                    <Badge />
                     {e.price}
                   </p>
+                </div>
+                <div className="box stack-top">
+                  {" "}
+                  <Route
+                    path="/welcome"
+                    element={<SingleProduct />}
+                    Quick
+                    View
+                  />
                 </div>
               </div>
               <div className="card-footer d-flex justify-content-evenly">
                 <div className="row d-flex justify-content-evenly ">
-                  <form className="d-flex justify-content-evenly">
-                    <div className="col-2">
-                      <button className="btn btn-warning m-1">
-                        <FaCartPlus />
-                      </button>
-                    </div>
-                    <div className="col-7 d-flex">
-                      <button className="btn btn-warning m-1">-</button>
-                      <input
-                        type="number"
-                        className="form-control m-1"
-                        width={100}
-                        name="item"
-                        id=""
-                        onChange={handleChange}
-                      />
-                      <button
-                        className="btn btn-warning m-1"
-                        onClick={handleSubmit}
-                      >
-                        +
-                      </button>
-                    </div>
+                  <div className="d-flex justify-content-evenly">
                     <div className="col-2">
                       <button className="btn btn-warning m-1">
                         <FaShare />
                       </button>
                     </div>
-                  </form>
+                    <div className="col-7 d-flex"></div>
+                    <div className="col-2">
+                      <button
+                        className="btn btn-warning m-1"
+                        onClick={() => handleSubmit(e)}
+                      >
+                        <FaCartPlus />
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           );
         })}
-        {/* product*/}
       </div>
     </div>
   );

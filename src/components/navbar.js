@@ -1,6 +1,11 @@
 import React from "react";
+import { FaUser } from "react-icons/fa";
+import { FaCartPlus } from "react-icons/fa";
+import Badge from "@material-ui/core/Badge";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-const NavBar = () => {
+const NavBar = ({ cart, setCart }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light ">
       <div className="container-fluid">
@@ -44,9 +49,13 @@ const NavBar = () => {
             <button className="btn btn-outline-success" type="submit">
               Search
             </button>
-            <div className="cart">
-              <i className="">Cart</i>
-              <i className="">Account</i>
+            <div className="cart d-flex">
+              <i className="m-2">
+                <Badge color="secondary" badgeContent={cart.length}>
+                  <ShoppingCartIcon />{" "}
+                </Badge>
+              </i>
+              <i className=" m-2"></i>
             </div>
           </form>
         </div>

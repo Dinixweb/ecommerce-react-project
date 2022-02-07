@@ -18,8 +18,40 @@ code {
 
 .card {
   width: 19.5rem;
+  z-index: 1;
 }
 
-.shadow-lg {
-  transition: 0.4s ease-in-out;
+.card:hover {
+  transition: 0.2s ease-in-out;
+  /* border: 1px solid orange !important; */
+  box-shadow: 1px 5px 3em #ccc;
+  border: 0 !important;
+
+}
+
+.quickView {}
+
+.stack-top {
+  z-index: 4;
+  position: absolute;
+  border-radius: 60px;
+  background-color: rgba(255, 166, 0, 0.493);
+  width: 120px;
+  height: 120px;
+  padding: 30px;
+  left: 100px;
+  top: 100px !important;
+  cursor: pointer;
+}
+
+.stack-top a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-size: 1.2em;
+}
+
+.stack-top:hover {
+  background-color: rgb(255, 255, 255);
+  transition: 0.2s ease-in-out;
+  color: #000;
 }

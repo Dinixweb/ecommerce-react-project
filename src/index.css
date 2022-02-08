@@ -12,10 +12,6 @@ code {
     monospace;
 }
 
-/* .dHeight {
-  height: 95.5vh;
-} */
-
 .card {
   width: 19.5rem;
   z-index: 1;
@@ -54,4 +50,8 @@ code {
   background-color: rgb(255, 255, 255);
   transition: 0.2s ease-in-out;
   color: #000;
+}
+
+.mCart {
+  cursor: pointer;
 }

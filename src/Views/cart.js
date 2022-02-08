@@ -1,10 +1,9 @@
 import React from "react";
 import NavBar from "../components/navbar";
 import Footer from "../components/footer";
+import { FaTimes } from "react-icons/fa";
 
-const Cart = ({ current, cart, setCart, setCurrent }) => {
-  console.log(cart);
-
+const Cart = ({ current, cart, setCart, setCurrent, onDelete }) => {
   const subTotal = cart.reduce((e, i) => {
     return e + i.price;
   }, 0);
@@ -15,13 +14,15 @@ const Cart = ({ current, cart, setCart, setCurrent }) => {
   const finalSub = newsubtotal.reduce((i, e) => {
     return i + e;
   }, 0);
-  console.log(finalSub);
   const shipping = 70;
 
   var formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
   });
+  const removeItem = (id) => {
+    cart = cart.filter((i) => i !== id);
+  };
   return (
     <div className="inner-wrapper dHeight ">
       <div className="infoHeader container mt-5 mb-4 bg-dark p-2 text-white fs-2">
@@ -53,6 +54,13 @@ const Cart = ({ current, cart, setCart, setCurrent }) => {
                       {formatter.format(
                         parseFloat(e.price) * e.defaultQuantity
                       )}
+                    </td>
+                    <td>
+                      <FaTimes
+                        cursor="pointer"
+                        color="red"
+                        onClick={() => onDelete(e.productId)}
+                      />
                     </td>
                   </tr>
                 ))}

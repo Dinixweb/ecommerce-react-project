@@ -26,7 +26,7 @@ const Products = ({ cart, setCart, setCurrent }) => {
       productName: "Oxford Shoes",
       productDesciption: "men leather shoe",
       price: 4000,
-      defaultQuantity: 2,
+      defaultQuantity: 1,
       imageUrl: require("../Assets/products/0_0061_img_2637_1.jpg"),
     },
     {
@@ -59,7 +59,7 @@ const Products = ({ cart, setCart, setCurrent }) => {
         "Casio Edifice Gold Dial |Silver & Gold Bracelet Chronograph Watch",
       productDesciption: "leather slipper New without box",
       price: 45000,
-      defaultQuantity: 2,
+      defaultQuantity: 1,
       imageUrl: require("../Assets/products/w1.jpg"),
     },
     {

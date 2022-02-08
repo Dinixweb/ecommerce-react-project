@@ -11,7 +11,9 @@ import NavBar from "./components/navbar";
 const App = () => {
   const [cart, setCart] = useState([]);
   const [current, setCurrent] = useState({});
-
+  const removeItem = (id) => {
+    setCart(cart.filter((i) => i.productId !== id));
+  };
   return (
     <div className="App">
       <Router>
@@ -33,7 +35,10 @@ const App = () => {
             }
           />
           <Route path="/shop" element={<Shop />} />
-          <Route path="/cart" element={<Cart cart={cart} />} />
+          <Route
+            path="/cart"
+            element={<Cart cart={cart} onDelete={removeItem} />}
+          />
           <Route path="/auth" element={<AdminLogin />} />
           <Route
             path="/"

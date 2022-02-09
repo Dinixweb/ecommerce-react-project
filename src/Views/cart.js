@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../components/navbar";
 import Footer from "../components/footer";
 import { FaTimes } from "react-icons/fa";
@@ -10,12 +10,21 @@ const Cart = ({ current, cart, setCart, setCurrent, onDelete }) => {
   let newsubtotal = cart.map((e) => {
     return e.defaultQuantity * e.price;
   });
+  const [oldQty, setOldQty] = useState(cart.defaultQuantity);
 
+  const newQty = () => {
+    setOldQty(cart.defaultQuantity);
+  };
   const finalSub = newsubtotal.reduce((i, e) => {
     return i + e;
   }, 0);
-  const shipping = 70;
-
+  let shipping = [0];
+  if (cart.length > 0) {
+    const shippingCost = cart.forEach((e) => {
+      return shipping.push(e.shippingCost);
+    });
+  }
+  shipping = shipping.reduce((a, b) => a + b);
   var formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
@@ -25,6 +34,11 @@ const Cart = ({ current, cart, setCart, setCurrent, onDelete }) => {
   };
   return (
     <div className="inner-wrapper dHeight ">
+      <div className="main p-2 bg-warning">
+        <div className="main-header container">
+          <NavBar cart={cart} setCart={setCart} />
+        </div>
+      </div>
       <div className="infoHeader container mt-5 mb-4 bg-dark p-2 text-white fs-2">
         Cart Information
       </div>
@@ -49,7 +63,14 @@ const Cart = ({ current, cart, setCart, setCurrent, onDelete }) => {
                     <td align="left">{e.productName}</td>
                     <td>{e.price}</td>
                     <td>{e.productDesciption}</td>
-                    <td>{e.defaultQuantity}</td>
+                    <td className="col-md-1">
+                      <input
+                        type="text"
+                        className="form-control"
+                        onChange={newQty}
+                        value={e.defaultQuantity}
+                      />
+                    </td>
                     <td>
                       {formatter.format(
                         parseFloat(e.price) * e.defaultQuantity
@@ -68,36 +89,32 @@ const Cart = ({ current, cart, setCart, setCurrent, onDelete }) => {
             </table>
           </div>
 
-          <div className="col-md-3">
+          <div className="col-md-5">
             <div className="payDetails border border-2 border-grey">
               {" "}
               <h3 className="fs-5">Cart Total</h3>
               <hr />
               <table>
-                <tr>
-                  <td width={300}>sub total</td>
-                  <td width={300} className="fs-5">
-                    {formatter.format(finalSub)}
-                  </td>
-                </tr>
-                <tr>
-                  <td width={300}>shipping</td>
-                  <td width={300} className="fs-5">
-                    {formatter.format(shipping)}
-                  </td>
-                </tr>
-                <tr>
-                  <td width={300}>grand total</td>
-                  <td width={300} className="fs-3">
-                    {formatter.format(finalSub + shipping)}
-                  </td>
-                </tr>
-                <div className="row mt-4">
-                  <div className="col-md-10">Payment on delivery</div>
-                  <div className="col-md-2">
-                    <input className="ms-5" type="radio" name="" id="" />
-                  </div>
-                </div>
+                <tbody>
+                  <tr>
+                    <td width={300}>sub total</td>
+                    <td width={300} className="fs-5">
+                      {formatter.format(finalSub)}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width={300}>shipping</td>
+                    <td width={300} className="fs-5">
+                      {formatter.format(shipping)}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width={300}>grand total</td>
+                    <td width={300} className="fs-3">
+                      {formatter.format(finalSub + shipping)}
+                    </td>
+                  </tr>
+                </tbody>
               </table>
               <button className="btn btn-warning mt-5 mb-5">Pay Now</button>
             </div>

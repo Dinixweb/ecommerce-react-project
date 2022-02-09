@@ -1,19 +1,92 @@
 {
-  "posts": [
+  "products": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "productId": "1",
+      "productName": "J. F Wooven Tassel - Black",
+      "productDesciption": "men leather shoe",
+      "price": 20300,
+      "defaultQuantity": 1,
+      "shippingCost": 21,
+      "StockLevel": 12,
+      "size": ["40 |", "42 |", "45 |"],
+      "imageUrl": "../Assets/products/0_0018_img_2792_1.jpg"
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "productId": "2",
+      "productName": "Oxford Shoes",
+      "productDesciption": "men leather shoe",
+      "price": 4000,
+      "defaultQuantity": 1,
+      "shippingCost": 12,
+      "StockLevel": 34,
+      "size": ["42 |", "43 |", "46 |"],
+      "imageUrl": "../Assets/products/0_0061_img_2637_1.jpg"
+    },
+    {
+      "productId": "3",
+      "productName": "Sebago Shoe - Black White",
+      "productDesciption": "men leather shoe",
+      "price": 12000,
+      "defaultQuantity": 1,
+      "shippingCost": 25,
+      "StockLevel": 9,
+      "size": ["41 |", "42 |", "44 |"],
+      "imageUrl": "../Assets/products/0_0018_img_2689_5.jpg"
+    },
+    {
+      "productId": "4",
+      "productName": "Jeep Buluo Plain Bag | Black",
+      "productDesciption": "leather slipper New without box",
+      "price": 28000,
+      "defaultQuantity": 1,
+      "shippingCost": 35,
+      "StockLevel": 45,
+      "imageUrl": "../Assets/products/bag.jpg"
+    },
+    {
+      "productId": "5",
+      "productName": "GG Middle strap slippers | Black",
+      "productDesciption": "leather slipper New without box",
+      "price": 28000,
+      "defaultQuantity": 1,
+      "shippingCost": 40,
+      "StockLevel": 19,
+      "size": ["31 |", "32 |", "34 |", "45"],
+      "imageUrl":"../Assets/products/ajebo_0024_img_0813.jpg"
+    },
+    {
+      "productId": "6",
+      "productName":
+        "Casio Edifice Gold Dial |Silver & Gold Bracelet Chronograph Watch",
+      "productDesciption": "leather slipper New without box",
+      "price": 45000,
+      "defaultQuantity": 1,
+      "shippingCost": 10,
+      "StockLevel": 21,
+      "imageUrl": "../Assets/products/w1.jpg"
+    },
+    {
+      "productId": "7",
+      "productName": "Umbro Classic White Trainers | White",
+      "productDesciption": "leather slipper New without box",
+      "price": 30000,
+      "defaultQuantity": 1,
+      "shippingCost": 50,
+      "StockLevel": 50,
+      "size": ["41 |", "42 |", "44 |"],
+      "imageUrl": "../Assets/products/umbro_ccupshoesu18g7009_1575651042umfm0192_096_1.jpg"
+    },
+    {
+      "productId": "8",
+      "productName": "Nike Tiempo Vetta | Black & Gold",
+      "productDesciption": "leather slipper New without box",
+      "price": 18000,
+      "defaultQuantity": 1,
+      "shippingCost": 30,
+      "StockLevel": 18,
+      "size": ["42 |", "43 |", "44 |"],
+      "imageUrl": "../Assets/products/nike-tiempo-vetta-17-p94616-279622_medium.jpg"
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
+
 }

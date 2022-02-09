@@ -7,6 +7,7 @@ import { useState } from "react";
 import SingleProduct from "./Views/singleProductView";
 import Cart from "./Views/cart";
 import NavBar from "./components/navbar";
+import AdminDasboard from "./Admin/Views/dashboard";
 
 const App = () => {
   const [cart, setCart] = useState([]);
@@ -17,11 +18,6 @@ const App = () => {
   return (
     <div className="App">
       <Router>
-        <div className="main p-2 bg-warning">
-          <div className="main-header container">
-            <NavBar cart={cart} setCart={setCart} />
-          </div>
-        </div>
         <Routes>
           <Route
             path="singleProductView"
@@ -40,6 +36,16 @@ const App = () => {
             element={<Cart cart={cart} onDelete={removeItem} />}
           />
           <Route path="/auth" element={<AdminLogin />} />
+          <Route
+            path="/dashboard"
+            element={
+              <AdminDasboard
+                cart={cart}
+                setCart={setCart}
+                setCurrent={setCurrent}
+              />
+            }
+          />
           <Route
             path="/"
             element={

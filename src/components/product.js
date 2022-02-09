@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { FaDollarSign } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
 import { FaCartPlus } from "react-icons/fa";
 import { FaShare } from "react-icons/fa";
 import Badge from "@material-ui/core/Badge";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
+
 // import SingleProduct from "../Views/singleProductView";
 
 // import ProductImage from "../Assets/products/oxford.jpg";
@@ -19,6 +19,9 @@ const Products = ({ cart, setCart, setCurrent }) => {
       productDesciption: "men leather shoe",
       price: 20300,
       defaultQuantity: 1,
+      shippingCost: 21,
+      StockLevel: 12,
+      size: ["40 |", "42 |", "45 |"],
       imageUrl: require("../Assets/products/0_0018_img_2792_1.jpg"),
     },
     {
@@ -27,6 +30,9 @@ const Products = ({ cart, setCart, setCurrent }) => {
       productDesciption: "men leather shoe",
       price: 4000,
       defaultQuantity: 1,
+      shippingCost: 12,
+      StockLevel: 34,
+      size: ["42 |", "43 |", "46 |"],
       imageUrl: require("../Assets/products/0_0061_img_2637_1.jpg"),
     },
     {
@@ -35,6 +41,9 @@ const Products = ({ cart, setCart, setCurrent }) => {
       productDesciption: "men leather shoe",
       price: 12000,
       defaultQuantity: 1,
+      shippingCost: 25,
+      StockLevel: 9,
+      size: ["41 |", "42 |", "44 |"],
       imageUrl: require("../Assets/products/0_0018_img_2689_5.jpg"),
     },
     {
@@ -43,6 +52,8 @@ const Products = ({ cart, setCart, setCurrent }) => {
       productDesciption: "leather slipper New without box",
       price: 28000,
       defaultQuantity: 1,
+      shippingCost: 35,
+      StockLevel: 45,
       imageUrl: require("../Assets/products/bag.jpg"),
     },
     {
@@ -51,6 +62,9 @@ const Products = ({ cart, setCart, setCurrent }) => {
       productDesciption: "leather slipper New without box",
       price: 28000,
       defaultQuantity: 1,
+      shippingCost: 40,
+      StockLevel: 19,
+      size: ["31 |", "32 |", "34 |", "45"],
       imageUrl: require("../Assets/products/ajebo_0024_img_0813.jpg"),
     },
     {
@@ -60,6 +74,8 @@ const Products = ({ cart, setCart, setCurrent }) => {
       productDesciption: "leather slipper New without box",
       price: 45000,
       defaultQuantity: 1,
+      shippingCost: 10,
+      StockLevel: 21,
       imageUrl: require("../Assets/products/w1.jpg"),
     },
     {
@@ -68,6 +84,9 @@ const Products = ({ cart, setCart, setCurrent }) => {
       productDesciption: "leather slipper New without box",
       price: 30000,
       defaultQuantity: 1,
+      shippingCost: 50,
+      StockLevel: 50,
+      size: ["41 |", "42 |", "44 |"],
       imageUrl: require("../Assets/products/umbro_ccupshoesu18g7009_1575651042umfm0192_096_1.jpg"),
     },
     {
@@ -76,6 +95,9 @@ const Products = ({ cart, setCart, setCurrent }) => {
       productDesciption: "leather slipper New without box",
       price: 18000,
       defaultQuantity: 1,
+      shippingCost: 30,
+      StockLevel: 18,
+      size: ["42 |", "43 |", "44 |"],
       imageUrl: require("../Assets/products/nike-tiempo-vetta-17-p94616-279622_medium.jpg"),
     },
   ];
@@ -83,6 +105,18 @@ const Products = ({ cart, setCart, setCurrent }) => {
 
   const [itemCount, setItemCount] = React.useState(1);
 
+  useEffect(() => {
+    const getProducts = async () => {
+      const mainProducts = await getProduct();
+      products.push(mainProducts);
+    };
+    getProducts();
+  }, []);
+
+  const getProduct = async () => {
+    const res = await fetch("http://localhost:9000/products");
+    const resData = await res.json();
+  };
   let [num, setNum] = useState(0);
 
   let incNum = (e) => {
@@ -105,8 +139,25 @@ const Products = ({ cart, setCart, setCurrent }) => {
     enteredValue = event.target.value;
     setNum = event.target.value;
   };
+  const [qty, setQty] = useState(0);
+
   const handleSubmit = (e) => {
-    setCart([...cart, e]);
+    cart.defaultQuantity = qty;
+    let found;
+    cart.forEach((a) => {
+      if (a.productId === e.productId) {
+        found = a;
+      }
+    });
+
+    if (found) {
+      found.defaultQuantity =
+        parseInt(found.defaultQuantity) + parseInt(e.defaultQuantity);
+      // setCart([...cart, current]);
+    } else {
+      const item = JSON.parse(JSON.stringify(e));
+      setCart([...cart, item]);
+    }
   };
   const quickView = (e) => {
     setCurrent(e);

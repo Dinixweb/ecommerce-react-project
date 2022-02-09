@@ -55,3 +55,25 @@ code {
 .mCart {
   cursor: pointer;
 }
+
+.login-wrapper {
+  width: 25rem;
+}
+
+.topbar {
+  background-color: #ccc;
+}
+
+.dash {
+  text-align: left;
+  padding: 15px 30px;
+  border-bottom: 1px dotted;
+  text-align: left;
+  list-style: none;
+}
+
+.dash:hover {
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+}
